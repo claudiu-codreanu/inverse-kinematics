@@ -1,6 +1,6 @@
 # Inverse Kinematics
 
-Simulates a multi-segment robotic arm/tentacle, using the inverse kinematics technique.  
+[Simulates a multi-segment robotic arm/tentacle](https://claudiu-codreanu.github.io/inverse-kinematics/main.html), using the inverse kinematics technique.  
 The arm follows a ball that bounces around using random speeds on X and Y axis.
 
 <br>
