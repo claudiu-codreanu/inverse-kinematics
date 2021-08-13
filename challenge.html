@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="eng">
+
+<head>
+    <meta charset="utf-8">
+    <title>Challenge</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+    <main>
+
+        <h2>The challenge</h2>
+        <div class="credit">(Proposed originally by Marian Veteanu)</div>
+        
+        <p>
+        You just got hired as a new mechatronics engineer at <b>AstroMining</b> – a multi-national corporation in charge of mining the precious metals from the Solar system asteroid belt.
+        The corporation plans to deploy autonomous harvesting vessels equipped with robot tentacles capable of grabbing and collecting the small rocks close to the ship.
+        </p>
+        
+        <p>
+        Your first assignment is to design such a robotic arm / tentacle.
+        But before doing it for real, you have to prove your design using a computer animated model in JavaScript.
+        </p>
+        
+        <p>
+        In the computer simulation the robotic tentacle is following the mouse cursor.
+        The tentacle is made out of several segments / lines.
+        The segments can be drawn with different thickness, but you’re welcomed to come up with your own visualization.
+        </p>
+        
+        <p>
+        To implement the simulation, you remembered that you have to use a technique called "inverse kinematics".
+        Basically you have to calculate the "angle" and "coordinates" of a segment in such way that the last one is always trying to reach / grab the mouse cursor. 
+        </p>
+        
+        
+        <h3>Implementation suggestions:</h3>
+        
+        <p>
+        Start first with a single segment that reaches for the mouse.
+        You’ll find that the implementation of this exercise is very similar to the one with the <a href="https://codepen.io/ccodreanu/pen/poNzRXv" target="_blank">eyes following the mouse</a>.
+        If you remember that exercise you know that you have to use polar coordinates... or a way to find out the angle of the segment.
+        </p>
+        
+        <p>
+        Next, try to add a second segment and calculate for both segments the "angle" and "coordinates".
+        The first segment is always anchored at fixed coordinates, therefore the calculations are even less.
+        </p>
+        
+        <p>
+        From now on, you just have to generalize your algorithm to support multiple segments. 
+        </p>
+        
+        <h3>More Implementation hints:</h3>
+        
+        <ul>
+        <li>
+        Keep all segments in an array.
+        For each segment, store angle and <code>(x, y)</code> coordinates of one end.
+        You don’t need to store both ends coordinates, since the other end can be easily calculated by angle, length and first end.
+        </li>
+        <br>
+        
+        <li>
+        Initialize the initial angles and coordinates of the segments with arbitrary values (recommended <code>0</code>).
+        Only the base segment will have known coordinates initially!
+        </li>
+        <br>
+        
+        <li>
+        Notice that the tip of the tentacle is always trying to grab the mouse,
+        therefore assume one end of the tip segment is actually at <code>(mouseX, mouseY)</code>,
+        and start to calculating the angle of the tip segment.
+        Once you calculated the angle, you can calculate the coordinates of the other end of tip segment.
+        </li>
+        <br>
+        
+        <li>
+        Notice that the next segment from the top is behaving the same as the tip segment,
+        but instead of trying to grab the mouse is trying to grab the end of the first segment,
+        therefore calculate it’s angle and the coordinates of the other end.
+        </li>
+        <br>
+        
+        <li>
+        Propagate the calculations in this way until the base segment calculating all the angles and coordinates.
+        Make sure you don’t overwrite the original fixed coordinates of the base segment
+        </li>
+        <br>
+        
+        <li>
+        In the previous steps you looped on the array from tip to base and calculated all the angles.
+        The angles are good but the calculated coordinates are not exact since you assumed the tip segment is actually touching <code>(mouseX, mouseY)</code>.
+        </li>
+        <br>
+        
+        <li>
+        Now is time to loop on the array from the other direction (from base to tip) and calculate the coordinates for good.
+        You know the base segment fixed coordinates and angle, therefore you determine the other end coordinates…
+        and then propagate the same calculation till the tip segment.
+        </li>
+        
+        </ul>
+
+        <br>
+        <div class="credit"><b>Credits for the algorithm: Keith Peters and Daniel Shiffman.</b></div>
+        
+    </main>
+
+</body>
+
+</html>
